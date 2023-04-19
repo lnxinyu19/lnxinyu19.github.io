@@ -81,12 +81,11 @@ function resetClock() {
 }
 
 function handleTimes(time, target) {
-  const maxSessionTime = 60 * 60;
-  const maxBreakTime = 60 * 59;
+  const maxTime = 60 * 60;
 
   if (target === "sessionTimes") {
     const newSessionTime = sessionTime + time;
-    if (newSessionTime < 60 || newSessionTime > maxSessionTime) {
+    if (newSessionTime < 60 || newSessionTime > maxTime) {
       return;
     }
     sessionTime = newSessionTime;
@@ -94,7 +93,7 @@ function handleTimes(time, target) {
     mins.textContent = formatTimes(sessionTime / 60);
   } else {
     const newBreakTime = breakTime + time;
-    if (newBreakTime < 0 || newBreakTime > maxBreakTime) {
+    if (newBreakTime < 0 || newBreakTime > maxTime) {
       return;
     }
     breakTime = newBreakTime;
