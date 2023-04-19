@@ -1,7 +1,9 @@
 let sessionTime = 1500; // default session time 25 mins
 let breakTime = 300; // default break time 5 mins
 let pause = false;
-let clock;
+let clock = null;
+let timer = 0;
+let reminderTimer = 0;
 
 // get HTML DOM elements
 const mins = document.getElementById("mins");
@@ -23,6 +25,10 @@ resetBtn.addEventListener("click", () => resetClock());
  */
 function initTimes() {
   sessionTime = 1500;
+  breakTime = 300;
+  timer = 0;
+  reminderTimer = 0;
+  clock = clearInterval(clock);
   sessionTimes.textContent = formatTimes(sessionTime / 60);
   breakTimes.textContent = breakTime / 60;
   mins.textContent = formatTimes(sessionTime / 60);
@@ -46,27 +52,28 @@ function changeButtonDisabled(isEnabled) {
  * @param {string} type - 計時器類型 ("session" 或 "break")
  */
 function startClock(type) {
+  changeButtonDisabled(true);
+  pause = false;
+
   if (clock) {
     return;
   }
 
-  let timer;
-  if (type === "session") {
+  if (type === "session" && reminderTimer === 0) {
     timer = sessionTime;
-  } else if (type === "break") {
+  } else if (type === "break" && reminderTimer === 0) {
     timer = breakTime;
-  } else {
-    return;
   }
-  changeButtonDisabled(true);
-  pause = false;
 
   clock = setInterval(() => {
     if (!pause) {
       timer--;
-      mins.textContent = formatTimes(timer / 60);
-      secs.textContent = formatTimes(timer % 60);
-      document.title = `${formatTimes(timer / 60)}：${formatTimes(timer % 60)}`;
+      reminderTimer = timer;
+      mins.textContent = formatTimes(reminderTimer / 60);
+      secs.textContent = formatTimes(reminderTimer % 60);
+      document.title = `${formatTimes(reminderTimer / 60)}：${formatTimes(
+        reminderTimer % 60
+      )}`;
 
       if (timer <= 0) {
         clearInterval(clock);
@@ -86,12 +93,12 @@ function startClock(type) {
 
 function pauseClock() {
   pause = true;
-  clearInterval(clock);
+  clock = clearInterval(clock);
 }
 
 function resetClock() {
   initTimes();
-  clearInterval(clock);
+  pause = true;
   document.title = "Pomodoro Timer";
 }
 
