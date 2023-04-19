@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pomodoro Timer</title>
+    <link rel="stylesheet" href="./assets/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div style="display: flex;">
+        <div>
+          <div style="text-align: center; margin-bottom: 0.5rem;">Session</div>
+          <button class="btn sessionTimeAdd" type="button"  onclick="handleTimes(-60, 'sessionTimes')">-</button>
+          <span id="sessionTimes"></span>
+          <button class="btn sessionTimeDecrease" type="button" onclick="handleTimes(60, 'sessionTimes')">+</button>
+        </div>
+        <div>
+          <div style="text-align: center; margin-bottom: 0.5rem;">Break Times</div>
+          <button class="btn breakTimeAdd" type="button" onclick="handleTimes(-60, 'breakTimes')">-</button>
+          <span id="breakTimes"></span>
+          <button class="btn breakTimeDecrease" type="button" onclick="handleTimes(60, 'breakTimes')">+</button>
+        </div>
+      </div>
+
+      <div class="timer"><span id="mins"></span>：<span id="secs"></span></div>
+      <div class="button-group">
+        <button class="btn" type="button" id="startBtn">start</button>
+        <button class="btn" type="button" id="pauseBtn">pause</button>
+        <button class="btn" type="button" id="resetBtn">reset</button>
+      </div>
+    </div>
+  </body>
+  <script src="./main.js"></script>
+</html>
