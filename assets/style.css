@@ -13,6 +13,13 @@ body {
   flex-direction: column;
   height: 100vh;
 }
+.time-control {
+  display: flex;
+}
+.time-type {
+  text-align: center; 
+  margin-bottom: 0.5rem;
+}
 .timer {
   display: flex;
   justify-content: center;
@@ -31,7 +38,7 @@ body {
 .btn:hover {
   cursor: pointer;
   background-color: #c9c9c9;
-  transition: all 0.5s;
+  transition: all 0.3s;
 }
 .btn:disabled{
   background-color: transparent;

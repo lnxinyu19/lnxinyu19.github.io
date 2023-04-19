@@ -27,10 +27,10 @@ function initTimes() {
 }
 
 function changeButtonDisabled(type) {
-  document.querySelector(".sessionTimeAdd").disabled = type;
-  document.querySelector(".sessionTimeDecrease").disabled = type;
-  document.querySelector(".breakTimeAdd").disabled = type;
-  document.querySelector(".breakTimeDecrease").disabled = type;
+  document.querySelector(".session-time-add").disabled = type;
+  document.querySelector(".session-time-decrease").disabled = type;
+  document.querySelector(".break-time-add").disabled = type;
+  document.querySelector(".break-time-decrease").disabled = type;
 }
 
 function startClock(type) {

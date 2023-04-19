@@ -9,18 +9,18 @@
   </head>
   <body>
     <div class="container">
-      <div style="display: flex;">
+      <div class="time-control">
         <div>
-          <div style="text-align: center; margin-bottom: 0.5rem;">Session</div>
-          <button class="btn sessionTimeAdd" type="button"  onclick="handleTimes(-60, 'sessionTimes')">-</button>
+          <div class="time-type">Session</div>
+          <button class="btn session-time-add" type="button"  onclick="handleTimes(-60, 'sessionTimes')">-</button>
           <span id="sessionTimes"></span>
-          <button class="btn sessionTimeDecrease" type="button" onclick="handleTimes(60, 'sessionTimes')">+</button>
+          <button class="btn session-time-decrease" type="button" onclick="handleTimes(60, 'sessionTimes')">+</button>
         </div>
         <div>
-          <div style="text-align: center; margin-bottom: 0.5rem;">Break Times</div>
-          <button class="btn breakTimeAdd" type="button" onclick="handleTimes(-60, 'breakTimes')">-</button>
+          <div class="time-type">Break Times</div>
+          <button class="btn break-time-add" type="button" onclick="handleTimes(-60, 'breakTimes')">-</button>
           <span id="breakTimes"></span>
-          <button class="btn breakTimeDecrease" type="button" onclick="handleTimes(60, 'breakTimes')">+</button>
+          <button class="btn break-time-decrease" type="button" onclick="handleTimes(60, 'breakTimes')">+</button>
         </div>
       </div>
 
