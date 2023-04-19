@@ -1,8 +1,9 @@
-let sessionTime = 1500;
-let breakTime = 300;
+let sessionTime = 1500; // default session time 25 mins
+let breakTime = 300; // default break time 5 mins
 let pause = false;
 let clock;
 
+// get HTML DOM elements
 const mins = document.getElementById("mins");
 const secs = document.getElementById("secs");
 const sessionTimes = document.getElementById("sessionTimes");
@@ -17,6 +18,9 @@ startBtn.addEventListener("click", () => startClock("session"));
 pauseBtn.addEventListener("click", () => pauseClock());
 resetBtn.addEventListener("click", () => resetClock());
 
+/**
+ * 初始化計時器時間
+ */
 function initTimes() {
   sessionTime = 1500;
   sessionTimes.textContent = formatTimes(sessionTime / 60);
@@ -26,13 +30,21 @@ function initTimes() {
   changeButtonDisabled(false);
 }
 
-function changeButtonDisabled(type) {
-  document.querySelector(".session-time-add").disabled = type;
-  document.querySelector(".session-time-decrease").disabled = type;
-  document.querySelector(".break-time-add").disabled = type;
-  document.querySelector(".break-time-decrease").disabled = type;
+/**
+ * 更改增減按鈕的禁用狀態
+ * @param {boolean} type - 禁用狀態 (true: 禁用, false: 啟用)
+ */
+function changeButtonDisabled(isEnabled) {
+  document.querySelector(".session-time-add").disabled = isEnabled;
+  document.querySelector(".session-time-decrease").disabled = isEnabled;
+  document.querySelector(".break-time-add").disabled = isEnabled;
+  document.querySelector(".break-time-decrease").disabled = isEnabled;
 }
 
+/**
+ * 開始計時器倒數計時
+ * @param {string} type - 計時器類型 ("session" 或 "break")
+ */
 function startClock(type) {
   let timer;
   if (type === "session") {
@@ -80,6 +92,11 @@ function resetClock() {
   document.title = "Pomodoro Timer";
 }
 
+/**
+ * 根據目標來處理會議時間或休息時間的調整。
+ * @param {number} time - 要增加或減少的時間，單位為秒。
+ * @param {string} target - 要調整的目標，可以是 "sessionTimes" 或 "breakTimes"。
+ */
 function handleTimes(time, target) {
   const maxTime = 60 * 60;
 
