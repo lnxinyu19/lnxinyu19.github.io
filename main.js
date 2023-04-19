@@ -31,7 +31,7 @@ function initTimes() {
 }
 
 /**
- * 更改增減按鈕的禁用狀態
+ * 更改按鈕的禁用狀態
  * @param {boolean} type - 禁用狀態 (true: 禁用, false: 啟用)
  */
 function changeButtonDisabled(isEnabled) {
@@ -46,6 +46,10 @@ function changeButtonDisabled(isEnabled) {
  * @param {string} type - 計時器類型 ("session" 或 "break")
  */
 function startClock(type) {
+  if (clock) {
+    return;
+  }
+
   let timer;
   if (type === "session") {
     timer = sessionTime;
@@ -54,7 +58,6 @@ function startClock(type) {
   } else {
     return;
   }
-
   changeButtonDisabled(true);
   pause = false;
 
