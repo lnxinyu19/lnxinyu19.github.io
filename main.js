@@ -24,8 +24,8 @@ resetBtn.addEventListener("click", () => resetClock());
  * 初始化計時器時間
  */
 function initTimes() {
-  sessionTime = 1500;
-  breakTime = 300;
+  sessionTime = 2;
+  breakTime = 3;
   timer = 0;
   reminderTimer = 0;
   clock = clearInterval(clock);
@@ -55,10 +55,6 @@ function startClock(type) {
   changeButtonDisabled(true);
   pause = false;
 
-  if (clock) {
-    return;
-  }
-
   if (type === "session" && reminderTimer === 0) {
     timer = sessionTime;
   } else if (type === "break" && reminderTimer === 0) {
@@ -76,15 +72,18 @@ function startClock(type) {
       )}`;
 
       if (timer <= 0) {
-        clearInterval(clock);
         if (type === "session") {
           setTimeout(() => {
-            alert("Session Times Out!");
+            alert(`Session Times Out!`);
             startClock("break");
           }, 1000);
         } else if (type === "break") {
-          initTimes();
+          setTimeout(() => {
+            alert(`Break Times Out!`);
+            initTimes();
+          }, 1000);
         }
+        clock = clearInterval(clock);
         return;
       }
     }
